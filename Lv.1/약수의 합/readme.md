@@ -25,7 +25,7 @@ def 결과(입력: n)
 ```jsx
 def solution(n):
     answer = 0
-    for num in range(n):
+    for num in range(n): #오류 발생
         if n % num == 0:
             answer += num
     return answer
