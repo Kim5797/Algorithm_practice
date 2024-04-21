@@ -32,7 +32,7 @@ def solution(n):
 ```
 실패 요인:
 ZeroDivisionError의 경우를 고려하지 않음
-여기서 range함수의 기능을 잊어서 
+여기서 range함수의 기능을 잊어서 다시 찾아봄
 
 ## 시도 2
 ```jsx
