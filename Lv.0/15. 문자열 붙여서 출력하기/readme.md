@@ -1,4 +1,4 @@
 ## 또 다른 풀이
-'''jsx
+```jsx
 print(input().strip().replace(' ', ''))
-'''
+```

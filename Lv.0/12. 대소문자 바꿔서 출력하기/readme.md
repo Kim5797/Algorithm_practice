@@ -1,6 +1,6 @@
-##또 다른 풀이
+## 또 다른 풀이
 
-'''jsx
+```jsx
 str = input()
 print(str.swapcase())
-'''
+```
