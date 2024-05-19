@@ -1,0 +1,1 @@
+solution = int.__mod__
