@@ -1,0 +1,1 @@
+solution = int.__add__
