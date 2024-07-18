@@ -1,7 +1,19 @@
 
 def solution(edges):
-    answer = []    
-    return answer
+    donut_count = 0
+    eight_count = 0
+    line_count = 0 
+    visited = [False] * max(map(max, edges))
+    graph = []
+
+    for current_node, next_node in edges:
+        if edges.
+    
+
+    return [donut_count, eight_count, line_count]
+
+edges = [[2, 3], [4, 3], [1, 1], [2, 1]]
+print(solution(edges)) # [1, 3, 4]
 
 
 class graph_Algorithm: # 그래프 알고리즘 클래스
