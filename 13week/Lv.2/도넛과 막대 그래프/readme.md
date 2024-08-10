@@ -108,8 +108,8 @@ def solution(edges):
         center[j-1][0] += 1
 
     # 입구의 개수가 0개이고 출구의 개수가 가장 많다면 그 노드가 새로 생성된 노드
-    node = 0
-    nodev = 0
+    node = 0 # 생성된 노드 
+    nodev = 0 
     for i in range(len(center)):
         if center[i][0] != 0:
             continue
@@ -119,14 +119,18 @@ def solution(edges):
     node += 1
     answer.append(node)
 
-    # 도넛, 막대, 8자 모양을 판별하는 부분
+    ## 도넛, 막대, 8자 모양을 판별하는 부분
+    # 각 그래프의 개수를 저장하는 부분
     donut = 0
     stick = 0
     eight = 0
-    visited = [False]*maxv
-    visited[node-1] = True
+    # 방문 정보를 저장하는 visited변수. 
+    visited = [False]*maxv # 노드의 개수의 크기만큼 생성함
+    visited[node-1] = True # 생성된 노드는 방문으로 표시
+    # 노드의 개수만큼 2차원 리스트 생성
     graph = [[] for _ in range(maxv)]
     startv = []
+    
     for start, end in edges:
         if end == node:
             continue
@@ -135,9 +139,10 @@ def solution(edges):
             continue
         graph[start-1].append(end-1)
 
+    
     def bfs(start_v):
         """
-        bfs알고리즘
+        bfs(너비 우선 탐색)알고리즘
         """
         discovered = set()
         node = 0
@@ -170,4 +175,60 @@ def solution(edges):
     answer.append(eight)
 
     return answer
+```
+
+```py
+# from 프로그래머스 by goodchoi
+import sys
+from collections import defaultdict
+sys.setrecursionlimit(10**7)
+
+grp = []
+def solution(edges):
+    global grp
+
+    grp = defaultdict(list)
+    node_set = set()
+
+    for edge in edges:
+        start, end = edge
+        grp[start].append(end)
+        node_set.add(end)
+
+    candidates = set(grp.keys()).difference(node_set)
+    created_node = 0
+    for candidate in candidates:
+        if len(grp[candidate]) > 1:  # 임의 생성 노드는 항상 2개이상을 가지므로
+            created_node = candidate
+
+    grp_count = [0] * 3
+    for start in grp[created_node]:
+        visited = {start}
+        grp_type = dfs(start, visited)
+        grp_count[grp_type] += 1
+
+    return [created_node,*grp_count]
+
+
+def dfs(cur_v, visited):
+    visited.add(cur_v)
+
+    if cur_v not in grp:
+        return 1
+
+    if len(grp[cur_v]) > 1:
+        return 2
+
+    for next_v in grp[cur_v]:
+        if next_v not in visited:
+            result = dfs(next_v, visited)
+            if result != 0:
+                return result
+    return 0
+
+
+if __name__ == '__main__':
+    solution(
+        [[4, 11], [1, 12], [8, 3], [12, 7], [4, 2], [7, 11], [4, 8], [9, 6], [10, 11], [6, 10], [3, 5], [11, 1], [5, 3],
+         [11, 9], [3, 8]])
 ```
